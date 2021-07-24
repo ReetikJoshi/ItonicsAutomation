@@ -1,0 +1,29 @@
+{
+	"browser": "chrome",
+	"amazon": {
+		"live": {
+			"frontend": "https://www.amazon.com/"
+		},
+		"uat": {
+			"frontend": ""
+		},
+		"currentURL": "live"
+	},
+	"facebook": {
+		"live": {
+			"frontend": "https://www.facebook.com/",
+			"loginDetails": {
+				"loginStatus": true,
+				"type": "csv"
+			}
+		},
+		"uat": {
+			"frontend": ""
+		},
+		"currentURL": "live"
+	},
+	"wait": {
+		"implicitWait": 10,
+		"explicitWait": 20
+	}
+}
