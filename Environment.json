@@ -14,7 +14,7 @@
 			"frontend": "https://www.facebook.com/",
 			"loginDetails": {
 				"loginStatus": true,
-				"type": "csv"
+				"type": "json"
 			}
 		},
 		"uat": {

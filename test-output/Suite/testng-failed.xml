@@ -6,13 +6,14 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="testCase.Amazon">
+      <class name="testCase.Facebook">
         <methods>
-          <include name="selectRandomDropdown"/>
-          <include name="visitAmazonSite"/>
           <include name="tearDown"/>
+          <include name="visitFacebookSite"/>
+          <include name="validateHomepage"/>
+          <include name="validateLoginUser"/>
         </methods>
-      </class> <!-- testCase.Amazon -->
+      </class> <!-- testCase.Facebook -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

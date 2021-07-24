@@ -1,11 +1,21 @@
 package helper;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,6 +24,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -55,11 +66,12 @@ public class HelperMethods {
 		env = HelperMethods.readJSONFile("/Environment.json");
 		// get the browser name in lower case
 		String browser = env.get("browser").toString();
-		System.out.println(browser);
 		// invoking the browser according to the name specified in the environment file
 		if (browser.equalsIgnoreCase("chrome") && browser.length() > 0) {
+			// Switching off chrome browser notifications
+			ChromeOptions options = switchOffChromeBrowserNotification();
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(options);
 		} else if (browser.equalsIgnoreCase("firefox") && browser.length() > 0) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
@@ -76,6 +88,22 @@ public class HelperMethods {
 		// maximize window
 		driver.manage().window().maximize();
 		return driver;
+	}
+
+	/**
+	 * switching off the browser notification seen after logging into facebook. -
+	 * Note: It is only seen in chrome browser
+	 * 
+	 * @return The new configuration with notification turned off
+	 */
+	public static ChromeOptions switchOffChromeBrowserNotification() {
+		// Create prefs map to store all preferences
+		Map<String, Object> prefs = new HashMap<String, Object>();
+		// Put this into prefs map to switch off browser notification
+		prefs.put("profile.default_content_setting_values.notifications", 2);
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", prefs);
+		return options;
 	}
 
 	/**
@@ -136,7 +164,7 @@ public class HelperMethods {
 	 * Helper method to get the frontend url. Resusable method to get the URL;
 	 * 
 	 * @param domain
-	 * @return
+	 * @return The frontend url of the passed domain
 	 * @throws IOException
 	 * @throws ParseException
 	 */
@@ -163,5 +191,44 @@ public class HelperMethods {
 		JSONObject currentURLObj = (JSONObject) facebookObj.get(currentURL);
 		JSONObject loginDetailsOBj = (JSONObject) currentURLObj.get("loginDetails");
 		return loginDetailsOBj;
+	}
+
+	/**
+	 * Get the data of the passed excel file(xlsx)
+	 * 
+	 * @return The array containing 2nd row data
+	 * @throws IOException
+	 */
+	public static ArrayList<String> getExcelData() throws IOException {
+		ArrayList<String> dataArr = new ArrayList<String>();
+		FileInputStream fs = new FileInputStream(
+				System.getProperty("user.dir") + "/src/test/resources/testData/fbLoginCredentials.xlsx");
+		// Read the entire excel file
+		XSSFWorkbook workbook = new XSSFWorkbook(fs);
+		// Get the total number of sheets
+		int totalSheets = workbook.getNumberOfSheets();
+		// Loop through all sheets
+		for (int i = 0; i < totalSheets; i++) {
+			// Check the sheetName matches or not
+			if (workbook.getSheetName(i).equalsIgnoreCase("fbLoginCredentials")) {
+				// Get access to sheet
+				// Sheet is the collection of rows
+				XSSFSheet sheet = workbook.getSheetAt(i);
+				// Row is the collection of cells
+				Iterator<Row> rows = sheet.iterator();
+				// get the first row
+				Row firstRow = rows.next();
+				// get the second row
+				Row secondRow = rows.next();
+				Iterator<Cell> secondCell = secondRow.cellIterator();
+				while (secondCell.hasNext()) {
+					Cell secondCellValue = secondCell.next();
+					// store all the second row values in the array and return it
+					dataArr.add(secondCellValue.getStringCellValue());
+				}
+			}
+		}
+		// Returning the array containing 2nd row values
+		return dataArr;
 	}
 }

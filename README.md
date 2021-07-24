@@ -23,3 +23,9 @@ There are 4 main packages in the project currently (src/test/java)
 - It will get generated inside the **Screenshot folder** with the failed test method name.
 - The image format is set to **png**.
 
+## Data driven testing
+- Login credentials for facebook site can be passed through both json and xlsx files.
+- **Note**: Pass "**json**" or "**xlsx**" value inside "**type**" key of environment to login facebook user accordingly.
+- Location: 'src/test/resources/testData/'
+
+

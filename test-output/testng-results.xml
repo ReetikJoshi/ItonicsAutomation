@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-07-24T11:38:17 NPT" name="Suite" finished-at="2021-07-24T11:38:23 NPT" duration-ms="5703">
+  <suite started-at="2021-07-24T20:52:26 NPT" name="Suite" finished-at="2021-07-24T20:52:47 NPT" duration-ms="21456">
     <groups>
     </groups>
-    <test started-at="2021-07-24T11:38:17 NPT" name="Test" finished-at="2021-07-24T11:38:23 NPT" duration-ms="5703">
+    <test started-at="2021-07-24T20:52:26 NPT" name="Amazon" finished-at="2021-07-24T20:52:36 NPT" duration-ms="9948">
+      <class name="testCase.Amazon">
+        <test-method is-config="true" signature="visitAmazonSite()[pri:0, instance:testCase.Amazon@40cb8df7]" started-at="2021-07-24T20:52:26 NPT" name="visitAmazonSite" finished-at="2021-07-24T20:52:32 NPT" duration-ms="6309" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- visitAmazonSite -->
+        <test-method signature="selectRandomDropdown()[pri:0, instance:testCase.Amazon@40cb8df7]" started-at="2021-07-24T20:52:32 NPT" name="selectRandomDropdown" finished-at="2021-07-24T20:52:35 NPT" duration-ms="2876" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectRandomDropdown -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCase.Amazon@40cb8df7]" started-at="2021-07-24T20:52:35 NPT" name="tearDown" finished-at="2021-07-24T20:52:36 NPT" duration-ms="720" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- testCase.Amazon -->
+    </test> <!-- Amazon -->
+    <test started-at="2021-07-24T20:52:36 NPT" name="Facebook" finished-at="2021-07-24T20:52:47 NPT" duration-ms="11492">
       <class name="testCase.Facebook">
-        <test-method is-config="true" signature="visitFacebookSite()[pri:0, instance:testCase.Facebook@2cdd0d4b]" started-at="2021-07-24T11:38:17 NPT" name="visitFacebookSite" finished-at="2021-07-24T11:38:23 NPT" duration-ms="5665" status="PASS">
+        <test-method is-config="true" signature="visitFacebookSite()[pri:0, instance:testCase.Facebook@72cde7cc]" started-at="2021-07-24T20:52:36 NPT" name="visitFacebookSite" finished-at="2021-07-24T20:52:39 NPT" duration-ms="3176" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- visitFacebookSite -->
-        <test-method signature="tetst()[pri:0, instance:testCase.Facebook@2cdd0d4b]" started-at="2021-07-24T11:38:23 NPT" name="tetst" finished-at="2021-07-24T11:38:23 NPT" duration-ms="6" status="PASS">
+        <test-method signature="validateLoginUser()[pri:0, instance:testCase.Facebook@72cde7cc]" started-at="2021-07-24T20:52:39 NPT" name="validateLoginUser" finished-at="2021-07-24T20:52:46 NPT" duration-ms="6816" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tetst -->
+        </test-method> <!-- validateLoginUser -->
+        <test-method signature="validateHomepage()[pri:0, instance:testCase.Facebook@72cde7cc]" started-at="2021-07-24T20:52:46 NPT" name="validateHomepage" finished-at="2021-07-24T20:52:46 NPT" depends-on-methods="testCase.Facebook.validateLoginUser" duration-ms="597" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateHomepage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCase.Facebook@72cde7cc]" started-at="2021-07-24T20:52:46 NPT" name="tearDown" finished-at="2021-07-24T20:52:47 NPT" duration-ms="894" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
       </class> <!-- testCase.Facebook -->
-    </test> <!-- Test -->
+    </test> <!-- Facebook -->
   </suite> <!-- Suite -->
 </testng-results>
