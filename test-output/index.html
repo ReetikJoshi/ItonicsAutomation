@@ -176,14 +176,13 @@
                   <a name="validateLoginUser">
                   </a> <!-- validateLoginUser -->
                   <span class="method-name">validateLoginUser</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
+                  <div class="stack-trace">org.openqa.selenium.WebDriverException: chrome not reachable
   (Session info: chrome=92.0.4515.107)
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
 System info: host: &apos;DESKTOP-4JQCKJ4&apos;, ip: &apos;192.168.1.84&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.11&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.107, chrome: {chromedriverVersion: 92.0.4515.43 (8c61b7e2989f2..., userDataDir: C:\Users\joshi_38kwxw8\AppD...}, goog:chromeOptions: {debuggerAddress: localhost:5416}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: b66543defcfed328124cbd568bf63bd8
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 92.0.4515.107, chrome: {chromedriverVersion: 92.0.4515.43 (8c61b7e2989f2..., userDataDir: C:\Users\joshi_38kwxw8\AppD...}, goog:chromeOptions: {debuggerAddress: localhost:11241}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 4907fbafa3e823416c06fec11d9eda3d
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
@@ -283,24 +282,24 @@ data.addRows(4);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'selectRandomDropdown')
 data.setCell(0, 2, 'testCase.Amazon')
-data.setCell(0, 3, 2573);
+data.setCell(0, 3, 3175);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'validateLoginUser')
 data.setCell(1, 2, 'testCase.Facebook')
 data.setCell(1, 3, 0);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'validateLoginNegativeScenarios')
+data.setCell(2, 1, 'validateHomepage')
 data.setCell(2, 2, 'testCase.Facebook')
 data.setCell(2, 3, 0);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'validateHomepage')
+data.setCell(3, 1, 'validateLoginNegativeScenarios')
 data.setCell(3, 2, 'testCase.Facebook')
 data.setCell(3, 3, 0);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 seconds</span>
+              <span class="suite-total-time">Total running time: 3 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -333,11 +332,11 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">selectRandomDropdown</span>
-                <span class="method-start">5295 ms</span>
+                <span class="method-start">7315 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">7873 ms</span>
+                <span class="method-start">10497 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
@@ -346,23 +345,23 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">visitFacebookSite</span>
-                <span class="method-start">8704 ms</span>
+                <span class="method-start">11439 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">validateLoginUser</span>
-                <span class="method-start">11949 ms</span>
+                <span class="method-start">19481 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">validateHomepage</span>
-                <span class="method-start">11954 ms</span>
+                <span class="method-start">19487 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">validateLoginNegativeScenarios</span>
-                <span class="method-start">11958 ms</span>
+                <span class="method-start">19492 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">11962 ms</span>
+                <span class="method-start">19497 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
