@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import helper.HelperMethods;
+import pages.facebook.Header;
 import pages.facebook.Homepage;
 import pages.facebook.LoginPage;
 
@@ -39,7 +40,10 @@ public class Facebook {
 	}
 
 	/**
-	 * Check the title, logo src, and login button visibility
+	 * Check the following:<br>
+	 * - page title<br>
+	 * - logo src<br>
+	 * - login button visibility
 	 */
 	public void validateLoginPage() {
 		loginP = new LoginPage(driver);
@@ -53,9 +57,10 @@ public class Facebook {
 	}
 
 	/**
-	 * Get the loginStatus and loginType from the environment. Login the user
-	 * according to these values extracted. Note: User will either get logged in
-	 * from the details passed in json or xlsx file inside resources folder
+	 * 1. Get the loginStatus and loginType from the environment.<br>
+	 * 2. Login the user according to these values extracted. <br>
+	 * 3. Note: User will either get logged in from the details passed in json or
+	 * xlsx file inside resources folder
 	 * 
 	 * @throws IOException
 	 * @throws ParseException
@@ -72,7 +77,6 @@ public class Facebook {
 		if (loginType.equalsIgnoreCase("xlsx")) {
 			excelLoginData = HelperMethods.getExcelData();
 			loginUser(excelLoginData.get(0), excelLoginData.get(1));
-
 		} else {
 			loginCredentialsObj = HelperMethods.readJSONFile("/src/test/resources/testData/fbLoginCredentials.json");
 			loginUser((String) loginCredentialsObj.get("email"), (String) loginCredentialsObj.get("password"));
@@ -95,8 +99,10 @@ public class Facebook {
 	}
 
 	/**
-	 * validate the homepage after login i.e fullname, welcome text and current
-	 * homepage Title
+	 * validate the homepage after login <br>
+	 * - fullname <br>
+	 * - welcome text <br>
+	 * - current homepage Title
 	 */
 	@Test(dependsOnMethods = "validateLoginUser")
 	public void validateHomepage() {
@@ -120,6 +126,61 @@ public class Facebook {
 		String homepageTitle = driver.getTitle();
 		Assert.assertTrue(homepageTitle.contains("Facebook"));
 		Assert.assertFalse(homepageTitle.contains("Facebook - Log In or Sign Up"));
+	}
+
+	/**
+	 * 1. Logout user.<br>
+	 * 2. Validate the user can't login with valid email and invalid password. <br>
+	 * 3. validate the user can't login with invalid email and valid password. <br>
+	 * 4. validate the user can't login with invalid email and invalid password.<br>
+	 * 5. validate the page on logging with blank credentials.
+	 * 
+	 * @throws InterruptedException
+	 */
+	@Test(dependsOnMethods = "validateHomepage")
+	public void validateLoginNegativeScenarios() throws InterruptedException {
+		// logout user
+		Header header = new Header(driver);
+		header.clickProfileIcon();
+		header.clickLogoutBtn();
+		Thread.sleep(2000);
+		// validate the user can't login with valid email and invalid password
+		String email, password;
+		if (loginType.equalsIgnoreCase("xlsx")) {
+			email = excelLoginData.get(0);
+			password = excelLoginData.get(1);
+		} else {
+			email = (String) loginCredentialsObj.get("email");
+			password = (String) loginCredentialsObj.get("password");
+		}
+		// login user
+		loginUser(email, "random");
+		Thread.sleep(1000);
+		loginP.checkPasswordIncorrectMsg();
+		Assert.assertFalse(driver.getCurrentUrl().contains("?sk=welcome"));
+		// go back
+		driver.navigate().back();
+		// validate the user can't login with invalid email and valid password
+		loginUser("sdkfjsdk@gmail.com", password);
+		Thread.sleep(1000);
+		loginP.checkAccountNotFoundMsg();
+		Assert.assertFalse(driver.getCurrentUrl().contains("?sk=welcome"));
+		// go back
+		driver.navigate().back();
+		// validate the user can't login with invalid email and invalid password
+		loginUser("sdfsadf@mailinator.com", "kjdfsjda");
+		Thread.sleep(1000);
+		loginP.checkEmailNotConnectedMsg();
+		Assert.assertFalse(driver.getCurrentUrl().contains("?sk=welcome"));
+		// go back
+		driver.navigate().back();
+		Thread.sleep(1000);
+		driver.navigate().refresh();
+		// validate the page on logging with blank credentials.
+		loginP.clickLoginBtn();
+		Thread.sleep(1000);
+		loginP.checkEmailOrMobileNotConnectedMsg();
+		Assert.assertFalse(driver.getCurrentUrl().contains("?sk=welcome"));
 	}
 
 	@AfterClass

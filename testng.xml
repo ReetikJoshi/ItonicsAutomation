@@ -8,7 +8,7 @@
 		<classes>
 			<class name="testCase.Amazon"></class>
 		</classes>
-	</test> <!-- Test -->
+	</test>
 	<test name="Facebook">
 		<classes>
 			<class name="testCase.Facebook"></class>

@@ -2,7 +2,6 @@ package helper;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -91,7 +90,7 @@ public class HelperMethods {
 	}
 
 	/**
-	 * switching off the browser notification seen after logging into facebook. -
+	 * switching off the browser notification seen after logging into facebook.<br>
 	 * Note: It is only seen in chrome browser
 	 * 
 	 * @return The new configuration with notification turned off
@@ -161,7 +160,8 @@ public class HelperMethods {
 	}
 
 	/**
-	 * Helper method to get the frontend url. Resusable method to get the URL;
+	 * 1. Helper method to get the frontend url.<br>
+	 * 2. Resusable method to get the URL;
 	 * 
 	 * @param domain
 	 * @return The frontend url of the passed domain

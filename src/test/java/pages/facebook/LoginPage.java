@@ -37,6 +37,7 @@ public class LoginPage {
 
 	public void enterEmail(String email) {
 		WebElement emailField = driver.findElement(By.id("email"));
+		emailField.clear();
 		// enter email
 		emailField.sendKeys(email);
 		// checking placeholder value
@@ -47,6 +48,7 @@ public class LoginPage {
 
 	public void enterPassword(String password) {
 		WebElement passwordField = driver.findElement(By.id("pass"));
+		passwordField.clear();
 		// enter password
 		passwordField.sendKeys(password);
 		// checking placeholder value
@@ -56,15 +58,49 @@ public class LoginPage {
 	}
 
 	/**
-	 * click the login button and validate the url
+	 * click the login button
 	 * 
 	 * @throws InterruptedException
 	 */
 	public void clickLoginBtn() throws InterruptedException {
 		driver.findElement(loginBtn).click();
 		Thread.sleep(4000);
-		// check the url
-		Assert.assertTrue(driver.getCurrentUrl().contains("?sk=welcome"));
 	}
 
+	/**
+	 * validate the msg/alert/validation when the user logs in with incorrect
+	 * password
+	 */
+	public void checkPasswordIncorrectMsg() {
+		WebElement passwordWrongMsg = driver.findElement(By.className("_9ay7"));
+		Assert.assertTrue(passwordWrongMsg.isDisplayed());
+		Assert.assertEquals(passwordWrongMsg.getText(), "The password you’ve entered is incorrect. Forgot Password?");
+	}
+
+	/**
+	 * validate the message seen after entering invalid email and valid password
+	 */
+	public void checkAccountNotFoundMsg() {
+		WebElement accountNotFound = driver.findElement(By.className("_9kq2"));
+		String expectedMsg = "We couldn't find an account matching the login info you entered, but found an account that closely matches based on your login history.";
+		Assert.assertTrue(accountNotFound.getText().contains(expectedMsg));
+	}
+
+	/**
+	 * validate the msg seen after entering invalid email and invalid password
+	 */
+	public void checkEmailNotConnectedMsg() {
+		WebElement emailNotConnected = driver.findElement(By.cssSelector("._9ay7"));
+		String expectedMsg = "The email you entered isn’t connected to an account.";
+		Assert.assertTrue(emailNotConnected.getText().contains(expectedMsg));
+	}
+
+	/**
+	 * validate the msg seen after logging in with blank credentials
+	 */
+	public void checkEmailOrMobileNotConnectedMsg() {
+		WebElement emailNotConnected = driver.findElement(By.cssSelector("._9ay7"));
+		String expectedMsg = "The email or mobile number you entered isn’t connected to an account.";
+		Assert.assertTrue(emailNotConnected.getText().contains(expectedMsg));
+	}
 }

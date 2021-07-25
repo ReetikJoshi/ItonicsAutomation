@@ -4,16 +4,17 @@
   <listeners>
     <listener class-name="addOn.TestListeners"/>
   </listeners>
-  <test thread-count="5" name="Test(failed)">
+  <test thread-count="5" name="Facebook(failed)">
     <classes>
       <class name="testCase.Facebook">
         <methods>
           <include name="tearDown"/>
           <include name="visitFacebookSite"/>
+          <include name="validateLoginNegativeScenarios"/>
           <include name="validateHomepage"/>
           <include name="validateLoginUser"/>
         </methods>
       </class> <!-- testCase.Facebook -->
     </classes>
-  </test> <!-- Test(failed) -->
+  </test> <!-- Facebook(failed) -->
 </suite> <!-- Failed suite [Suite] -->
