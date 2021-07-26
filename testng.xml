@@ -3,6 +3,7 @@
 <suite name="Suite">
 	<listeners>
 		<listener class-name="addOn.TestListeners"></listener>
+		<listener class-name="addOn.ExtentReporter"></listener>
 	</listeners>
 	<test name="Amazon">
 		<classes>
@@ -10,8 +11,8 @@
 		</classes>
 	</test>
 	<test name="Facebook">
-		<classes>
-			<class name="testCase.Facebook"></class>
-		</classes>
-	</test>
+	<classes>
+		<class name="testCase.Facebook"></class>
+	</classes>
+</test>
 </suite> <!-- Suite -->

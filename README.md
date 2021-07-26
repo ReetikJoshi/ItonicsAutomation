@@ -3,12 +3,12 @@
 ##### `` Clone the project and checkout to assignment branch ``
 
 ## Description
-There are 4 main packages in the project currently (src/test/java)   
+There are 5 main packages in the project currently (src/test/java)   
 1. helper => The global methods reused by many test cases are placed there.  
 2. pages.amazon => The Page Objects(Web elements) of amazon website.  
 3. pages.facebook => The Page Objects(Web elements) of facebook website.  
 4. testCase => The main class file to execute the automation script which are specified in the testng.xml file too.  
-5. addOn => Additional features for the project (screenshot).
+5. addOn => Additional features for the project (screenshot and reports).
 
 ## Environment/Global variables
 - The global or environment variables are specified in **Environment.json** file
@@ -28,4 +28,8 @@ There are 4 main packages in the project currently (src/test/java)
 - **Note**: Pass "**json**" or "**xlsx**" value inside "**type**" key of environment to login facebook user accordingly.
 - Location: 'src/test/resources/testData/'
 
+## Reporting
+- **ExtentReports library** is used to generate reports located inside "**Extent Reports**" folder.
+- Will generate an html file containing details like test name, test status(pass or fail), pie-charts, execution time, etc.
+- Default TestNg reports can also be accessed inside **test-output** folder.
 
